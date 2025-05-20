@@ -1,0 +1,7 @@
+.root {
+    display: flex;
+    padding: 10px;
+}
+.button {
+    margin-left: auto;
+}
