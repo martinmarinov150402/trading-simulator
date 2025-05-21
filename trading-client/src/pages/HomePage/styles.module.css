@@ -1,0 +1,20 @@
+.title {
+    font-size: 60px;
+    font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+    margin-left: 50px;
+    
+}
+
+.additional {
+    color: white;
+    font-size: 30px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+    margin-left: 50px;
+}
+.root {
+    display: grid;
+    grid-template-columns: 50% 50%;
+}
+.loginButton {
+    margin-left: 50px;
+}
