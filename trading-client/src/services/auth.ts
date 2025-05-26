@@ -3,7 +3,8 @@ import { UserStorage } from "./user-storage";
 
 export interface User {
   username: string;
-  password: string;
+  balance: number;
+
 }
 
 type OnChangeHandler = ((user: User | undefined) => unknown) | undefined;
@@ -19,16 +20,14 @@ class AuthService {
     this.onChange = action;
   }
 
-  async login(user: User) {
-    const token = await httpService.post("/login", {
-      username: user.username,
-      password: user.password,
-    })
+  async login(loginData: {username: string, password: string}) {
+    const token = (await httpService.post<{token: string}>("/api/auth/login", loginData)).token;
 
-    console.log(token);
-    /*this.user = user;
-    userStorage.save(user);*/
-    //this.onChange?.(this.currentUser);
+    
+    userStorage.save(token);
+    this.user = await httpService.get<{username: string, balance: number}>("/api/user/profile");
+    this.onChange?.(this.currentUser);
+    console.log(this.currentUser);
   }
 
   logout() {
@@ -37,6 +36,11 @@ class AuthService {
     this.onChange?.(this.currentUser);
   }
 
+  async refreshUser() {
+    this.user = await httpService.get<{username: string, balance: number}>("/api/user/profile");
+    this.onChange?.(this.currentUser);
+    console.log(this.currentUser);
+  }
   get currentUser() {
     return this.user;
   }

@@ -2,9 +2,19 @@ import styles from './styles.module.css'
 import { LeftSide } from '../../components/LeftSide';
 import { Button } from '../../components/Button';
 import { useNavigate } from 'react-router';
+import { authService } from '../../services/auth';
+import { useEffect } from 'react';
 
 export function HomePage() {
     const navigate = useNavigate();
+
+    useEffect(() => {
+        if(authService.currentUser) {
+            navigate("/dashboard");
+        }
+    }, [navigate]);
+    
+
     return (
         <div className={styles.root}>
             <LeftSide isHome/>

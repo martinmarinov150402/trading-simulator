@@ -50,6 +50,7 @@ class HttpService {
     const userStorage = new UserStorage();
     const token = userStorage.token;
 
+    console.log("Token", token);
     if (token) {
       headers.append('Authorization', `Bearer ${token}`);
     }

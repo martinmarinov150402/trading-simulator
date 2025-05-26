@@ -1,16 +1,6 @@
-import { User } from "./auth";
-
-const USER_KEY = "logged-user";
+const USER_KEY = "USER_TOKEN";
 
 export class UserStorage {
-  get current(): User | undefined {
-    const user = localStorage.getItem(USER_KEY);
-    if (!user) {
-      return undefined;
-    }
-
-    return JSON.parse(user);
-  }
 
   get token() {
     const token = localStorage.getItem(USER_KEY);
@@ -23,8 +13,8 @@ export class UserStorage {
   }
 
 
-  save(user: User) {
-    localStorage.setItem(USER_KEY, JSON.stringify(user));
+  save(token: string) {
+    localStorage.setItem(USER_KEY, token);
   }
 
   remove() {
