@@ -7,6 +7,7 @@ import { LoginPage } from './pages/LoginPage';
 import { HomePage } from './pages/HomePage';
 import { KrakenServiceContextProvider } from './contexts/kraken-service-context';
 import { DashboardPage } from './pages/DashboardPage';
+import { LogsPage } from './pages/LogsPage';
 
 function App() {
   return (
@@ -17,6 +18,8 @@ function App() {
             <Route path="/register" element={<RegisterPage />} />
             <Route path="/login" element={<LoginPage/>}/>
             <Route path="/" element={<HomePage/>} />
+            <Route path="/logs" element={<LogsPage/>} />
+
             <Route path="/dashboard" element={<DashboardPage/>} />
           </Routes>
         </KrakenServiceContextProvider>

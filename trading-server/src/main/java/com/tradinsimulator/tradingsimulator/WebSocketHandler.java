@@ -38,10 +38,8 @@ public class WebSocketHandler extends TextWebSocketHandler {
     @Override
     protected void handleTextMessage(WebSocketSession session, TextMessage message) throws Exception {
         if(message.getPayload().contains("ticker") && !message.getPayload().contains("subscribe")) {
-            System.out.println(message.getPayload());
             Update data = objectMapper.readValue(message.getPayload(), Update.class);
             currencyMap.put(data.data().getFirst().symbol(), data.data().getFirst());
-            //System.out.println(data);
         }
 
     }
