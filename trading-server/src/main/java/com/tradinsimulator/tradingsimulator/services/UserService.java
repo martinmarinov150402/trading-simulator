@@ -33,7 +33,7 @@ public class UserService {
 
         userRepository.save(data);
 
-        userCurrencyRepository.deleteAllInBatch(userCurrencyRepository.findByUserId(data.getId()).orElse(new ArrayList<>()));
+        userCurrencyRepository.deleteAllInBatch(userCurrencyRepository.findByUserId(data.getId()));
         transactionRepository.deleteAllInBatch(transactionRepository.findByUserId(data.getId()));
 
     }

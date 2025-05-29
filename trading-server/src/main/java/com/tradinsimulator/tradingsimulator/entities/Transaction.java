@@ -1,33 +1,24 @@
 package com.tradinsimulator.tradingsimulator.entities;
 
-import jakarta.persistence.*;
-import org.springframework.data.annotation.CreatedDate;
-
 import java.time.Instant;
-import java.util.UUID;
 
-@Entity
-@Table(name = "transactions")
+
 
 public class Transaction {
-    @Id
-    @GeneratedValue()
+
+
+
     private int id;
 
-    @Column(nullable = false)
-    private UUID userId;
+    private int userId;
 
-    @Column(nullable = false)
     private String currency;
 
-
-    @Column(nullable = false)
     private double ammount;
 
-    @Column(nullable = false)
     private double money;
 
-    public UUID getUserId() {
+    public int getUserId() {
         return userId;
     }
 
@@ -47,16 +38,9 @@ public class Transaction {
         return createdAt;
     }
 
-    @Column(name = "created_at", nullable = false, updatable = false)
-    @CreatedDate
     private Instant createdAt;
 
-    @PrePersist
-    protected void onCreate() {
-        this.createdAt = Instant.now();
-    }
-
-    public void setUserId(UUID userId) {
+    public void setUserId(int userId) {
         this.userId = userId;
     }
 
@@ -74,5 +58,13 @@ public class Transaction {
 
     public void setCreatedAt(Instant createdAt) {
         this.createdAt = createdAt;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
     }
 }
